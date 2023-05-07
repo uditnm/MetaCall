@@ -123,22 +123,7 @@ class FaceMeshDetector:
                 connections=self.mp_holistic.POSE_CONNECTIONS,
                 landmark_drawing_spec=mp.solutions.drawing_utils.DrawingSpec(color=(0, 255, 0), thickness=2,
                                                                              circle_radius=2),
-                connection_drawing_spec=mp.solutions.drawing_utils.DrawingSpec(color=(255, 0, 0), thickness=2))         
-
-        
-
-        
-        if self.results.multi_face_landmarks:
-            for face_landmarks in self.results.multi_face_landmarks:
-                if draw:
-                    self.mp_drawing.draw_landmarks(
-                        image = img,
-                        landmark_list = face_landmarks,
-                        connections = self.mp_face_mesh.FACEMESH_TESSELATION,
-                        landmark_drawing_spec = self.drawing_spec,
-                        connection_drawing_spec = self.drawing_spec)  '''
-
-
+                connection_drawing_spec=mp.solutions.drawing_utils.DrawingSpec(color=(255, 0, 0), thickness=2))      '''
 
 
 # sample run of the module

@@ -82,17 +82,6 @@ def main():
     # get a sample frame for pose estimation img
     success, img = cap.read()
 
-    filter_imageBGRA = cv2.imread('media/filter.png', cv2.IMREAD_UNCHANGED)
-    filter_on = False
-
-    frame_height, frame_width, _ = img.shape
-
-    # Resize the filter image to the size of the frame.
-    filter_imageBGRA = cv2.resize(filter_imageBGRA, (frame_width, frame_height))
-
-    # Get the three-channel (BGR) image version of the filter image.
-    filter_imageBGR = filter_imageBGRA[:, :, :-1]
-
     # Pose estimation related
     pose_estimator = PoseEstimator((img.shape[0], img.shape[1]))
     image_points = np.zeros((pose_estimator.model_points_full.shape[0], 2))
