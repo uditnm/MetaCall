@@ -82,6 +82,17 @@ def main():
     # get a sample frame for pose estimation img
     success, img = cap.read()
 
+    filter_imageBGRA = cv2.imread('media/filter.png', cv2.IMREAD_UNCHANGED)
+    filter_on = False
+
+    frame_height, frame_width, _ = img.shape
+
+    # Resize the filter image to the size of the frame.
+    filter_imageBGRA = cv2.resize(filter_imageBGRA, (frame_width, frame_height))
+
+    # Get the three-channel (BGR) image version of the filter image.
+    filter_imageBGR = filter_imageBGRA[:, :, :-1]
+
     # Pose estimation related
     pose_estimator = PoseEstimator((img.shape[0], img.shape[1]))
     image_points = np.zeros((pose_estimator.model_points_full.shape[0], 2))
@@ -134,6 +145,7 @@ def main():
         # flip the input image so that it matches the facemesh stuff
         img = cv2.flip(img, 1)
 
+
         # if there is any face detected
         if faces:
             # only get the first face
@@ -143,8 +155,8 @@ def main():
                 
             # for refined landmarks around iris
             for j in range(len(iris_image_points)):
-                iris_image_points[j, 0] = faces[0][j + 468][0]
-                iris_image_points[j, 1] = faces[0][j + 468][1]
+                iris_image_points[j, 0] = faces[0][j + 300][0]
+                iris_image_points[j, 1] = faces[0][j + 300][1]
 
             # The third step: pose estimation
             # pose: [[rvec], [tvec]]
